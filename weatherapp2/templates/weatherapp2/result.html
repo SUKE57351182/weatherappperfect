@@ -1,0 +1,27 @@
+{% block content %}
+    <h1>現在の天気</h1>
+    <p>都市名を入力してください</p>
+    <form action="{% url 'cityform' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="city" placeholder="都市名を入力" >
+            {{form.name}}
+        </div>
+            <p><input type="submit" value="検索する"></p>
+    </form>
+        {% endblock %}
+
+    
+        {%block list%}
+
+
+        <h2>{{city_weather.city}}</h2>
+
+        <img src="https://openweathermap.org/img/w/{{ city_weather.icon}}.png" alt="img"> 
+
+        <ul>
+            <li><span class="tia">最高気温:</span> {{city_weather.temperature}}度</li>
+            <li><span class="tib">最低気温:</span> {{city_weather.temperature2}}度</li>
+            <li><span class="tic">湿度:</span> {{city_weather.humidity}}％</li>
+        </ul>
+        {% endblock %}
